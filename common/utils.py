@@ -23,4 +23,4 @@ def gen_rendom_code(length=4):
 
     code = random.randrange(10**(length-1),10**length)
 
-    return  str(code)
+    return str(code)

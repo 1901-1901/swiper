@@ -1,8 +1,10 @@
+from django.core.cache import cache
 from django.http import JsonResponse
-from common import errors
+from common import errors, cache_keys
 from common.utils import is_phone_num
 from libs.http import render_json
 from user import logics
+from user.models import User
 
 
 def verify_phone(request):
@@ -29,4 +31,20 @@ def login(request):
     :param request:
     :return:
     '''
-    
+    phone_num = request.POST.get('phone_num','')
+    code = request.POST.get('code','')
+
+    phone_num = phone_num.strip()
+    code = code.strip()
+
+    cached_code = cache.get(cache_keys.VERIFY_CODE_PREFIX.format(phone_num))
+
+    if cached_code != code:
+        return render_json(code=errors.VERIFY_CODE_ERR)
+
+        
+
+    try:
+        user = User.objects.get(pk=1)
+
+    except User.DoesNot:
