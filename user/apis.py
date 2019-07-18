@@ -56,4 +56,21 @@ def login(request):
     # 设置登录状态
     request.session['uid'] = user.id
 
+    # token 认证 方式
+    # 为当前用户生成一个 token 并且存储到缓存中，key为：token：user.id，value为：token
+    # token = user.get_or_create_token()
+    # data = {'token':token}
+    # return render_json(data=data)
+
     return render_json(data=user.to_dict())
+
+
+def get_prafile(request):
+    return None
+
+
+
+
+def set_profile(request):
+
+    return None
