@@ -3,4 +3,4 @@
 '''
 
 # 验证码
-VERIFY_CODE_PREFIX = 'verify_code:{}'
+VERIFY_CODE_KEY_PREFIX = 'verify_code:{}'

@@ -17,7 +17,7 @@ def send_verify_code(phone_num):
     ret = sms.send_verify_code(phone_num,code)
 
     if ret:
-        cache.set(cache_keys.VERIFY_CODE_PREFIX.format(phone_num),code,60*3)
+        cache.set(cache_keys.VERIFY_CODE_KEY_PREFIX.format(phone_num),code,60*3)
 
 
     return ret

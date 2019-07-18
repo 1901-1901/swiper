@@ -37,14 +37,23 @@ def login(request):
     phone_num = phone_num.strip()
     code = code.strip()
 
-    cached_code = cache.get(cache_keys.VERIFY_CODE_PREFIX.format(phone_num))
+    cached_code = cache.get(cache_keys.VERIFY_CODE_KEY_PREFIX.format(phone_num))
 
     if cached_code != code:
         return render_json(code=errors.VERIFY_CODE_ERR)
 
-        
 
-    try:
-        user = User.objects.get(pk=1)
 
-    except User.DoesNot:
+    # try:
+    #     user = User.objects.get(pk=1)
+    # 
+    # except User.DoesNotExist:
+    #     user = User.objects.cereate()
+
+    # 如果存在记录，则 get 否则 create
+    user,created = User.objects.get_or_create(phonenum=phone_num)
+
+    # 设置登录状态
+    request.session['uid'] = user.id
+
+    return render_json(data=user.to_dict())

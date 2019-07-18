@@ -14,4 +14,5 @@ PHONE_NUM_ERR = 2001
 #验证码发送失败
 SMS_SEND_ERR = 2002
 
+# 验证码错误
 VERIFY_CODE_ERR = 2003
