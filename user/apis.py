@@ -4,6 +4,7 @@ from common import errors, cache_keys
 from common.utils import is_phone_num
 from libs.http import render_json
 from user import logics
+from user.forms import ProfileForms
 from user.models import User
 
 
@@ -76,5 +77,14 @@ def get_prafile(request):
 
 def set_profile(request):
 
+    user = request.user
 
-    return None
+    form = ProfileForms(data=request.POST,instance=user.profile)
+
+    if form.is_valid():
+        form.save()
+
+        return render_json()
+    else:
+        return render_json(data=form.errors)
+
