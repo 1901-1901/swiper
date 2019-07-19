@@ -66,11 +66,15 @@ def login(request):
 
 
 def get_prafile(request):
-    return None
+
+    user = request.user
+
+    return render_json(data=user.profile.to_dict(exclude=['auto_play']))
 
 
 
 
 def set_profile(request):
+
 
     return None

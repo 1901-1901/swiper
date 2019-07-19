@@ -1,7 +1,7 @@
 import datetime
-
 from django.core.cache import cache
 from django.db import models
+from libs.orm import ModelToDictMixin
 
 SEXS = (
     (0, '未知'),
@@ -70,7 +70,7 @@ class User(models.Model):
     class Meta:
         db_table = 'users'
 
-class Profile(models.Model):
+class Profile(models.Model,ModelToDictMixin):
     """
        location        目标城市
        min_distance    最小查找范围
