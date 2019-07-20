@@ -30,7 +30,7 @@ class ProfileForms(forms.ModelForm):
                   'min_distance',
                   'max_distance',
                   'min_dating_age',
-                  'locmax_dating_age',
+                  'max_dating_age',
                   'dating_sex'
                   ]
         # fields = '__all__'
