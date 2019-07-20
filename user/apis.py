@@ -115,6 +115,6 @@ def upload_avatar(request):
     # else:
     #     return render_json(code=errors.AVATAR_UPLOAD_ERR)
 
-    logics.async_upload_avatar(avatar)
+    logics.async_upload_avatar(user,avatar)
 
     return render_json()
